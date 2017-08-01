@@ -1,4 +1,6 @@
-# MulMul
+# mulmul
+
+> 9조 프로젝트 환경 세팅
 
 ### MVP
 1. 로그인/ 회원가입
@@ -10,8 +12,22 @@
 7. 반응형 웹페이지
 8. 크로스 브라우징(IE9+)
 
-### 사용 기술
+### 사용기술
 1. HTML
 2. SCSS
-3. Vue.js
-4. webpack-cli
+3. Vue.js(vue template 사용[webpack-cli])
+
+### Build Setup
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for production with minification
+npm run build
+```
+
+For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
