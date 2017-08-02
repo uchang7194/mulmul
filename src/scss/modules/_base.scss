@@ -1,0 +1,45 @@
+// --------------------------------------------
+// 타이포그래피 설계(Typography Design)
+// --------------------------------------------
+// 기본 글꼴 사이즈
+$base-font-size: 14px !default;
+// 글줄 사이(행간) 비율 - line-height: 1.5
+$leading-scale: 1.5;
+// 글줄 사이(행간) 간격 - 21px
+$leading: $base-font-size * $leading-scale;
+// 기본 폰트 컬러
+$base-font-color: #181818;
+// 기본 폰트 스타일
+$base-font-family: 'Roboto', 'Spoqa Han Sans', 'Sans-serif';
+
+// --------------------------------------------
+// 레이아웃 설계
+// --------------------------------------------
+// 기본 넓이값
+$wrapper-width: 100%;
+// 그리드 영역 최대 넓이값
+$grid-max-width: 1280px;
+
+
+
+.t-right{
+  text-align: right;
+}
+
+.t-center{
+  text-align: center;
+}
+
+.f-left{
+  float:left;
+}
+
+.f-right{
+  float:right;
+}
+
+.modal-box{
+  border: 1px solid #ddd;
+  background: #fff;
+  z-index: 9999;
+}
