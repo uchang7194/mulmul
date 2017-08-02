@@ -1,4 +1,4 @@
-<template>
+<template>  
   <div id="app" class="wrapper">
     <div class="header-wrapper">
       <header class="header grid">
@@ -49,8 +49,16 @@
 </template>
 
 <script>
+import HeaderComp from './components/header/Header.vue'
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    HeaderComp
+  },
+  data () {
+    return {}
+  }
 }
 </script>
 
