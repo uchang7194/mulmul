@@ -1,8 +1,50 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
-    <footer>hee footer</footer>
+  <div id="app" class="wrapper">
+    <div class="header-wrapper">
+      <header class="header grid">
+        <h1 class="heading col col-d-3 col-t-2 col-m-1">
+          <div class="box">logo</div>
+        </h1>
+        <div class="search-box col col-d-5 col-t-4 col-m-3">
+          <div class="box">search</div>
+        </div>
+        <div class="sign-in col col-d-2 col-t-1 col-m-2">
+          <div class="box">sign-in</div>
+        </div>
+        <div class="sing-up col col-d-2 col-t-1 col-m-2">
+          <div class="box">sing-up</div>
+        </div>
+      </header>
+    </div>
+    <main class="contents">
+      <div class="grid">
+        <div class="col col-d-3 col-t-4 col-m-4">
+          <div class="box">item</div>
+        </div>
+        <div class="col col-d-3 col-t-4 col-m-4">
+          <div class="box">item</div>
+        </div>
+        <div class="col col-d-3 col-t-4 col-m-4">
+          <div class="box">item</div>
+        </div>
+        <div class="col col-d-3 col-t-4 col-m-4">
+          <div class="box">item</div>
+        </div>
+        <div class="col col-d-3 col-t-4 col-m-4">
+          <div class="box">item</div>
+        </div>
+        <div class="col col-d-3 col-t-4 col-m-4">
+          <div class="box">item</div>
+        </div>
+        <div class="col col-d-3 col-t-4 col-m-4">
+          <div class="box">item</div>
+        </div>
+        <div class="col col-d-3 col-t-4 col-m-4">
+          <div class="box">item</div>
+        </div>
+      </div>        
+    </main>
+    <footer class="footer"></footer>
   </div>
 </template>
 
@@ -12,13 +54,7 @@ export default {
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang ="scss">
+/* @import './scss/stylesheet.scss'; */
+
 </style>

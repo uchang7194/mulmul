@@ -1,0 +1,47 @@
+@import 'mixin';
+@import 'base';
+
+html{
+    font-size: 10px;
+}
+
+body{
+    font-size: $base-font-size;
+    color: $base-font-color;
+    font-family: $base-font-family;
+    /*font-weight는 100(thin), 400(normal), 700(bold)만 사용하세요.*/
+    line-height: $leading-scale;
+    background: #fff;
+}
+
+.header-wrapper{
+  width: $wrapper-width;
+  background: #ddd;
+  border-bottom: 1px solid #aaa;
+  margin-bottom: $leading*2;
+}
+
+.box{
+  width: 100%;
+  background: skyblue;
+  border:1px solid blue;
+  margin-bottom: $leading;
+}
+
+.header .box{
+  margin-bottom: 0;
+  @include mobile{
+    line-height: 3;
+  }
+  @include tablet{
+    line-height: 3;
+  }
+  @include desktop{
+    line-height: 4.5;
+  } 
+}
+
+.contents .box{
+  line-height: 15;
+}
+
