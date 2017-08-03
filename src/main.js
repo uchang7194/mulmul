@@ -7,7 +7,11 @@ import {store} from './store/'
 import './scss/stylesheet.scss'
 
 Vue.config.productionTip = false
-
+Vue.directive('focus', {
+  inserted: function (el) {
+    el.focus()
+  }
+})
 /* eslint-disable no-new */
 // console.log(loginStore)
 

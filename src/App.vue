@@ -1,6 +1,7 @@
 <template>  
   <div id="app" class="wrapper">
     <div class="header-wrapper">
+      <header-comp></header-comp>
       <header class="header grid">
         <h1 class="heading col col-d-3 col-t-2 col-m-1">
           <div class="box">logo</div>
