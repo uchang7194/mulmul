@@ -1,13 +1,13 @@
 <template>
-    <div class="login" v-if="isClosed" @click="changeFocus($event)">
+    <div class="login" v-if="isClosed">
         <form action="" name="" class="login-form">
             <fieldset>
                 <legend class="a11y-hidden">로그인 폼</legend>
                 <p class="title">MulMul</p>
                 <email></email>
                 <password></password>
-                <button class="facebook-login-btn" type="button" @focus="changeFocus($event)">Facebook</button>
-                <button class="login-submit-btn" type="button" @focus="changeFocus($event)">로그인</button>
+                <button class="facebook-login-btn" type="button">Facebook</button>
+                <button class="login-submit-btn" type="button">로그인</button>
             </fieldset>
         </form>
     </div>
@@ -27,12 +27,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      'btnClicked': 'isChangedLoginModalState',
-      'isFocus': 'isChangedInputTextFocus'
-    }),
-    changeFocus (e) {
-      this.isFocus({el: e.target})
-    }
+      'btnClicked': 'isChangedLoginModalState'
+    })
   },
   computed: {
     ...mapGetters({
