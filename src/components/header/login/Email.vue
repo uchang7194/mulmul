@@ -1,11 +1,11 @@
 <template>
   <div class="email-box">
-    <label for="email">E-mail <span class="email_chk_msg" v-if="viewValidation">{{email_chk_msg.incorrect}}</span></label>
-    <input type="text" id="email" v-model="email">
+    <label for="email"><span class="email_chk_msg" v-if="viewValidation">{{email_chk_msg.incorrect}}</span></label>
+    <input ref="email_input" placeholder="이메일을 입력하세요." type="text" id="email" v-model="email" @focus="changeFocus($event)">
   </div>
 </template>
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 export default {
   data () {
     return {
@@ -13,6 +13,15 @@ export default {
       email_chk_msg: {
         incorrect: '올바른 형식의 이메일이 아닙니다.'
       }
+    }
+  },
+  methods: {
+    ...mapActions({
+      'btnClicked': 'isChangedLoginModalState',
+      'isFocus': 'isChangedInputTextFocus'
+    }),
+    changeFocus (e) {
+      this.isFocus({el: e.target})
     }
   },
   computed: {
@@ -34,7 +43,6 @@ export default {
 <style lang="scss">
 .email-box {
   .email_chk_msg {
-    font-size: 10px;
   }
 }
 </style>

@@ -2,7 +2,7 @@
   <header class="header">
     <div class="header-inner">
       <button type="button" class="login-btn" @click="btnClicked">로그인</button>
-      <login></login>
+      <login ref="login"></login>
     </div>
   </header>
 </template>
@@ -24,15 +24,17 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .header {
   box-shadow: 0 2px 2px 0 rgba(20, 20, 20, 0.6);
+
   .header-inner {
     max-width: 1280px;
     height: 90px;
     position: relative;
     margin: 0 auto;
     background-color: #ff0;
+    z-index: 9999;
   }
   .login-btn {
     position: absolute;

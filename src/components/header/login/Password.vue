@@ -1,11 +1,11 @@
 <template>
   <div class="pwd-box">
-    <label for="pwd">Password <span class="pwd_chk_msg" v-if="viewValidation">{{pwd_chk_msg.incorrect}}</span></label>
-    <input type="password" id="pwd" class="pwd-input" v-model="password">
+    <label for="pwd"><span class="pwd_chk_msg" v-if="viewValidation">{{pwd_chk_msg.incorrect}}</span></label>
+    <input type="password" placeholder="비밀번호를 입력하세요." id="pwd" class="pwd-input" v-model="password" @focus="changeFocus($event)">
   </div>
 </template>
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   data () {
@@ -14,6 +14,15 @@ export default {
       pwd_chk_msg: {
         incorrect: '올바른 형식의 비밀번호가 아닙니다.'
       }
+    }
+  },
+  methods: {
+    ...mapActions({
+      'btnClicked': 'isChangedLoginModalState',
+      'isFocus': 'isChangedInputTextFocus'
+    }),
+    changeFocus (e) {
+      this.isFocus({el: e.target})
     }
   },
   computed: {
@@ -34,7 +43,6 @@ export default {
 </script>
 <style lang="scss">
 .pwd_chk_msg {
-  font-size: 10px;
 }
 .pwd-box {
 }

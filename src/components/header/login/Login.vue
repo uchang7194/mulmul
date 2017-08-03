@@ -1,16 +1,19 @@
 <template>
-    <div class="login" v-if="isClosed" @click="changeFocus($event)" @focus="changeFocus($event)">
+    <div class="login" v-if="isClosed" @click="changeFocus($event)">
         <form action="" name="" class="login-form">
             <fieldset>
                 <legend class="a11y-hidden">로그인 폼</legend>
+                <p class="title">MulMul</p>
                 <email></email>
                 <password></password>
+                <button class="facebook-login-btn" type="button" @focus="changeFocus($event)">Facebook</button>
+                <button class="login-submit-btn" type="button" @focus="changeFocus($event)">로그인</button>
             </fieldset>
         </form>
     </div>
 </template>
 <script>
-import {mapGetters, mapMutations} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 import Email from './Email.vue'
 import Password from './Password.vue'
 
@@ -23,9 +26,9 @@ export default {
     return {}
   },
   methods: {
-    ...mapMutations({
-      'btnClicked': 'changeBtnClicked',
-      'isFocus': 'changeLoginFocus'
+    ...mapActions({
+      'btnClicked': 'isChangedLoginModalState',
+      'isFocus': 'isChangedInputTextFocus'
     }),
     changeFocus (e) {
       this.isFocus({el: e.target})
@@ -47,7 +50,6 @@ export default {
     clip: rect(0 0 0 0);
     overflow: hidden;
     margin: -1px;
-    
 }
 .login {
   position: fixed;
@@ -58,7 +60,16 @@ export default {
   background-color: rgba(10, 10, 10, 0.6);
 
   & div {
-    margin-bottom: 12px;
+    position: relative;
+    margin-top: 2rem;
+    label {
+      position: absolute;
+      top: -2rem;
+      left: 0; 
+    }
+    span {
+      font-size: 1rem;
+    }
   }
   form {
       position: absolute;
@@ -73,11 +84,27 @@ export default {
     text-align: left;
   }
   input {
-    border: 0;
-    border-bottom: 1px solid lightgreen;  
-    height: 20px;
+    box-sizing: border-box;
+    border: 1px solid #f5f5f5;
     width: 100%;
+    padding: 7px 15px;
+    font-size: 1rem;
   }
+  button {
+    padding: 0;
+    border: 0;
+    width: 100%;
+    padding: 5px 0;
+    vertical-align: middle;
+    color: #fff;
+    cursor: pointer;
+  }
+}
+.title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+
 }
 .login-form {
 
@@ -87,7 +114,14 @@ export default {
   padding: 20px;
   transform: translate(-50%, -50%);    
   width: 300px;
-  height: 300px;
   background-color: #fff;
+}
+.facebook-login-btn {
+  margin-top: 35px;
+  background-color: rgb(56, 151, 204);
+}
+.login-submit-btn {
+  margin-top: 10px;
+  background-color: rgb(56, 151, 204);
 }
 </style>
