@@ -14,10 +14,10 @@ export default {
   computed: {
     inputPassword: {
       get () {
-        return this.$store.getters.getPassword
+        return this.$store.getters.getLoginPassword
       },
       set (v) {
-        this.$store.dispatch('setPassword', v)
+        this.$store.dispatch('setLoginPassword', v)
       }
     }
   }

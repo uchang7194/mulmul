@@ -1,43 +1,49 @@
 const state = {
-  is_btn_clicked: false,
+  isLoginActived: false,
   password: '',
   email: ''
 }
 
 const getters = {
-  getBtnClicked (state) {
-    return state.is_btn_clicked
+  getLoginActived (state) {
+    return state.isLoginActived
   },
-  getPassword (state) {
+  getLoginPassword (state) {
     return state.password
   },
-  getEmail (state) {
+  getLoginEmail (state) {
     return state.email
   }
 }
 
 const mutations = {
   // 로그인 창 활성화 유무
-  changeBtnClicked (state) {
-    state.is_btn_clicked = !state.is_btn_clicked
+  changeIsLoginActived (state) {
+    state.isLoginActived = !state.isLoginActived
   },
-  setPassword (state, payload) {
+  changeLoginFocus (state, payload) {
+    state.isLoginActived && (payload.target.getAttribute('class') === 'login') ? state.isLoginActived = false : state.isLoginActived = state.isLoginActived
+  },
+  setLoginPassword (state, payload) {
     state.password = payload
   },
-  setEmail (state, payload) {
+  setLoginEmail (state, payload) {
     state.email = payload
   }
 }
 
 const actions = {
-  isChangedLoginModalState ({commit}) {
-    commit('changeBtnClicked')
+  isChangedLoginActive ({commit}) {
+    commit('changeIsLoginActived')
   },
-  setPassword ({commit}, payload) {
-    commit('setPassword', payload)
+  isChangedLoginFocus ({commit}, payload) {
+    commit('changeLoginFocus', payload)
   },
-  setEmail ({commit}, payload) {
-    commit('setEmail', payload)
+  setLoginPassword ({commit}, payload) {
+    commit('setLoginPassword', payload)
+  },
+  setLoginEmail ({commit}, payload) {
+    commit('setLoginEmail', payload)
   }
 }
 

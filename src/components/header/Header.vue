@@ -1,25 +1,36 @@
 <template>
   <header class="header">
     <div class="header-inner">
-      <button type="button" class="login-btn" @click="btnClicked">로그인</button>
-      <login ref="login"></login>
+      <ul class="utills">
+        <li>
+          <button type="button" class="login-btn" @click="loginActived">로그인</button>
+        </li>
+        <li>
+          <button type="button" class="membership-btn" @click="membershipActived">회원가입</button>
+        </li>
+      </ul>
+      <login></login>
+      <membership></membership>
     </div>
   </header>
 </template>
 <script>
-import {mapMutations} from 'vuex'
+import {mapActions} from 'vuex'
 import Login from './login/Login.vue'
+import Membership from './membership/membership.vue'
 
 export default {
   components: {
-    Login
+    Login,
+    Membership
   },
   data () {
     return {}
   },
   methods: {
-    ...mapMutations({
-      'btnClicked': 'changeBtnClicked'
+    ...mapActions({
+      'loginActived': 'isChangedLoginActive',
+      'membershipActived': 'isChangedMembershipActive'
     })
   }
 }
@@ -36,11 +47,19 @@ export default {
     background-color: #ff0;
     z-index: 9999;
   }
-  .login-btn {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
 }
+.utills {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  &:after {
+    content: '';
+    clear: both;
+  }
+  li {
+    float: left;
+    margin-left: 20px;
+  }
+} 
 </style>

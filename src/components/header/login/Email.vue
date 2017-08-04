@@ -1,7 +1,7 @@
 <template>
   <div class="email-box">
     <label class="a11y-hidden" for="email">이메일</label>
-    <input ref="email_input" placeholder="이메일을 입력하세요." type="text" id="email" v-model="inputEmail">
+    <input placeholder="이메일을 입력하세요." type="text" id="email" v-model="inputEmail">
   </div>
 </template>
 <script>
@@ -12,10 +12,10 @@ export default {
   computed: {
     inputEmail: {
       get () {
-        return this.$store.getters.getEmail
+        return this.$store.getters.getLoginEmail
       },
       set (v) {
-        this.$store.dispatch('setEmail', v)
+        this.$store.dispatch('setLoginEmail', v)
       }
     }
   }
