@@ -20,26 +20,37 @@ $wrapper-width: 100%;
 // 그리드 영역 최대 넓이값
 $grid-max-width: 1280px;
 
-
-
+.t-left{
+  text-align: left;
+}
 .t-right{
   text-align: right;
 }
-
 .t-center{
   text-align: center;
 }
-
 .f-left{
   float:left;
 }
-
 .f-right{
   float:right;
 }
-
 .modal-box{
   border: 1px solid #ddd;
   background: #fff;
   z-index: 9999;
+}
+button{
+  border-radius: 3px;
+  outline: none;
+  background: #484848;
+  border: 1px solid #3e3e3e;
+  padding: 7px 15px;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+button.blue{
+  background: #2f8be6;
+  border: 1px solid #2983dd;
 }
