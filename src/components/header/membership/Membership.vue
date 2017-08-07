@@ -57,6 +57,8 @@ export default {
   width: 100%;
   height: 100%;
   background-color: rgba(10, 10, 10, 0.6);
+  z-index: 19999;
+  
   & div {
     position: relative;
     margin-top: 2rem;
