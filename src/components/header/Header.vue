@@ -17,6 +17,11 @@
       <div class="box t-right">
         <button type="button" class="btn-sign-in" @click="loginActived">로그인</button>
         <button type="button" class="btn-sign-up blue" @click="membershipActived">회원가입</button>
+        <!--임시-->
+        <ul class="login-utill-list">
+          <router-link tag="li" to="/"><a href>Home</a></router-link>
+          <router-link tag="li" to="/my-page"><a href>myPage</a></router-link>
+        </ul>
       </div>
     </div>
     <login></login>

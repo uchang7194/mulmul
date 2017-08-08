@@ -138,7 +138,7 @@ const actions = {
     commit('setMembershipNickName', payload)
   }
 }
-export default {
+export const membership = {
   state,
   getters,
   mutations,

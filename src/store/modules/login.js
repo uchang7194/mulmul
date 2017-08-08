@@ -47,7 +47,7 @@ const actions = {
   }
 }
 
-export default {
+export const login = {
   state,
   getters,
   mutations,
