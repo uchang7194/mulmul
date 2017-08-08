@@ -1,28 +1,7 @@
 <template>  
   <div id="app" class="wrapper">
     <div class="header-wrapper">
-      <!-- <header-comp></header-comp> -->
-      <header class="header grid">
-        <h1 class="heading col col-d-2 col-t-2 col-m-1">
-          <div class="box">
-            <img src="./assets/mulmul_logo_w.png" alt="물물 로고">
-          </div>
-        </h1>
-        <div class="search col col-d-7 col-t-4 col-m-3">
-          <div class="box t-center">
-            <div class="goods-search-box">
-              <i class="fa fa-search" aria-hidden="true"></i>
-              <input style="search" class="input-search-goods" alt="상품검색창" placeholder="상품 또는 아이디를 검색하세요.">
-            </div>
-          </div>
-        </div>
-        <div class="sign-in col col-d-3 col-t-2 col-m-4">
-          <div class="box t-right">
-            <button tpye="button" class="btn-sign-in">로그인</button>
-            <button type="button" class="btn-sign-up blue">회원가입</button>
-          </div>
-        </div>
-      </header>
+      <header-comp></header-comp>
     </div>
     <main class="contents">
       <div class="grid">
