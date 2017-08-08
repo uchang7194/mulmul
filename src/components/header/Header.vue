@@ -1,24 +1,27 @@
 <template>
   <header class="header grid">
-    <h1 class="heading col col-d-3 col-t-2 col-m-1">
-      <div class="box">logo</div>
-    </h1>
-    <div class="search-box col col-d-5 col-t-4 col-m-3">
-      <div class="box">search</div>
-    </div>
-    <div class="sign-in col col-d-2 col-t-1 col-m-2">
+    <h1 class="heading col col-d-2 col-t-2 col-m-1">
       <div class="box">
-        <button type="button" class="login-btn" @click="loginActived">로그인</button>
+        <img src="../../assets/mulmul_logo_w.png" alt="물물 로고">
+      </div>
+    </h1>
+    <div class="search col col-d-7 col-t-4 col-m-3">
+      <div class="box t-center">
+        <div class="goods-search-box">
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" class="input-search-goods" alt="상품검색창" placeholder="상품 또는 아이디를 검색하세요.">
+        </div>
       </div>
     </div>
-    <div class="sign-up col col-d-2 col-t-1 col-m-2">
-      <div class="box">
-        <button type="button" class="membership-btn" @click="membershipActived">회원가입</button>
+    <div class="sign-in col col-d-3 col-t-2 col-m-4">
+      <div class="box t-right">
+        <button type="button" class="btn-sign-in" @click="loginActived">로그인</button>
+        <button type="button" class="btn-sign-up blue" @click="membershipActived">회원가입</button>
       </div>
     </div>
     <login></login>
     <membership></membership>
-  </header>
+  </header>  
 </template>
 <script>
 import {mapActions} from 'vuex'
