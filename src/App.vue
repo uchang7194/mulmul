@@ -160,5 +160,8 @@ export default {
 
 <style lang ="scss">
 /* @import './scss/stylesheet.scss'; */
-
+.contents {
+  position: relative;
+  z-index: 0;
+}
 </style>

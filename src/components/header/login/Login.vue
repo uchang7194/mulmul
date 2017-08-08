@@ -1,5 +1,5 @@
 <template>
-    <div class="login" v-if="isClosed">
+    <div class="login" v-if="isClosed" @click="closeLoginModal($event)">
         <form action="" name="" class="login-form">
             <fieldset>
                 <legend class="a11y-hidden">로그인 폼</legend>
@@ -27,13 +27,21 @@ export default {
   },
   methods: {
     ...mapActions({
-      'btnClicked': 'isChangedLoginModalState'
-    })
+      'btnClicked': 'isChangedLoginActive',
+      'close': 'isChangedLoginFocus'
+    }),
+    closeLoginModal (e) {
+      let target = e.target
+      this.close({target})
+    }
   },
   computed: {
     ...mapGetters({
-      'isClosed': 'getBtnClicked'
+      'isClosed': 'getLoginActived'
     })
+  },
+  mounted: function () {
+    console.log('login mounted this.$el', this.$el)
   }
 }
 </script>
@@ -54,7 +62,7 @@ export default {
   width: 100%;
   height: 100%;
   background-color: rgba(10, 10, 10, 0.6);
-
+  z-index: 19999;
   & div {
     position: relative;
     margin-top: 2rem;
