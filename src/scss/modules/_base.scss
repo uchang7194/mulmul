@@ -45,11 +45,12 @@ button{
   outline: none;
   background: #484848;
   border: 1px solid #3e3e3e;
-  padding: 7px 15px;
+  margin-top: $leading /2;
+  line-height: $leading-scale * 2;
+  padding: 0 20px;
   color: #fff;
   font-size: 1.2rem;
 }
-
 button.blue{
   background: #2f8be6;
   border: 1px solid #2983dd;
