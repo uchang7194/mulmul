@@ -4,44 +4,96 @@
 html{
     font-size: 10px;
 }
-
 body{
     font-size: $base-font-size;
     color: $base-font-color;
     font-family: $base-font-family;
     /*font-weight는 100(thin), 400(normal), 700(bold)만 사용하세요.*/
     line-height: $leading-scale;
-    background: #fff;
+    background: #353535;
 }
-
 .header-wrapper{
   width: $wrapper-width;
-  background: #ddd;
-  border-bottom: 1px solid #aaa;
-  margin-bottom: $leading*2;
+  background: #282828;
+  border-bottom: 1px solid #1e1e1e;
+  margin-bottom: $leading * 2;
 }
-
 .box{
   width: 100%;
-  background: skyblue;
-  border:1px solid blue;
   margin-bottom: $leading;
 }
-
 .header .box{
   margin-bottom: 0;
   @include mobile{
-    line-height: 3;
+    height: $leading * 3;
   }
   @include tablet{
-    line-height: 3;
+    height: $leading * 3;
   }
   @include desktop{
-    line-height: 4.5;
+    height: $leading * 3;
   } 
 }
 
-.contents .box{
-  line-height: 15;
+// header
+.heading .box{
+  position: relative;
+  img{
+    width: 130px;  
+    height: auto;
+    display: inline-block;
+    position: absolute;
+    top: 15px;
+    left: 0;
+  }
 }
 
+.search .box{
+  padding-top: $leading / 2;
+}
+.goods-search-box{
+  width: 60%;
+  height: $leading *2;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding-left: 15px;
+  margin: 0 auto ;
+  .input-search-goods{
+    width:90%;
+    height: 100%;
+    outline: none;
+    border: none;
+    margin-left: 10px;
+    box-sizing: border-box;
+  }
+}
+
+.btn-sign-up{
+  margin-left: 10px;
+}
+
+// main
+.contents{
+  .box{
+    width: 100%;
+    height: 210px;
+    // border: 1px solid #1e1e1e;
+    background: #fff;
+  }
+}
+.goods-thumbnail-box{
+  width: 100%;
+  height: 100%;
+  border: 1px solid #1e1e1e;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box; 
+  img{
+    width: 300px;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-150px, -50%);
+  }
+}
