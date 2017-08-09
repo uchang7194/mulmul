@@ -117,19 +117,20 @@
             </div>
           </div>
         </div>
-      </div>        
+      </div>
     </main>
+    <modal-comp></modal-comp>
     <footer class="footer"></footer>
   </div>
 </template>
 
 <script>
 import HeaderComp from './components/header/Header.vue'
-
+import ModalComp from './components/Modal.vue'
 export default {
   name: 'app',
   components: {
-    HeaderComp
+    HeaderComp, ModalComp
   },
   data () {
     return {}

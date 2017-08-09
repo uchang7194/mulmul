@@ -11,6 +11,7 @@ body{
     /*font-weight는 100(thin), 400(normal), 700(bold)만 사용하세요.*/
     line-height: $leading-scale;
     background: #353535;
+    position: relative;
 }
 .header-wrapper{
   width: $wrapper-width;
