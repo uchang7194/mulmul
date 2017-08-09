@@ -20,6 +20,10 @@ $wrapper-width: 100%;
 // 그리드 영역 최대 넓이값
 $grid-max-width: 1280px;
 
+a, :hover, :focus{
+  text-decoration: none;
+  color: $base-font-color;
+}
 .t-left{
   text-align: left;
 }
@@ -28,6 +32,9 @@ $grid-max-width: 1280px;
 }
 .t-center{
   text-align: center;
+}
+.t-bold{
+  font-weight: bold;
 }
 .f-left{
   float:left;
@@ -54,4 +61,14 @@ button{
 button.blue{
   background: #2f8be6;
   border: 1px solid #2983dd;
+}
+
+input[type=text], input[type=search]{
+  border: none;
+  line-height: $leading-scale * 2;  
+}
+textarea{
+  box-sizing: border-box;
+  resize: none;
+  border: none;
 }

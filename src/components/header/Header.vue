@@ -45,9 +45,9 @@ export default {
 }
 </script>
 <style lang="scss">
-.header {
-  box-shadow: 0 2px 2px 0 rgba(20, 20, 20, 0.6);
-}
+// .header {
+//   box-shadow: 0 2px 2px 0 rgba(20, 20, 20, 0.6);
+// }
 .sign-in,
 .sign-up {
   text-align: center;
