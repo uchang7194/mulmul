@@ -3,7 +3,8 @@
     <div class="header-wrapper">
       <header-comp></header-comp>
     </div>
-    <main class="contents">
+    <my-page></my-page>
+    <!-- <main class="contents">
       <div class="grid">
         <div class="col col-d-3 col-t-4 col-m-4">
           <div class="box">
@@ -117,9 +118,9 @@
             </div>
           </div>
         </div>
-      </div>
-    </main>
-    <modal-comp></modal-comp>
+      </div> 
+    </main> -->
+    <!-- <modal-comp></modal-comp>  -->
     <footer class="footer"></footer>
   </div>
 </template>
@@ -127,10 +128,11 @@
 <script>
 import HeaderComp from './components/header/Header.vue'
 import ModalComp from './components/Modal.vue'
+import MyPage from './components/mypage/MyPage.vue'
 export default {
   name: 'app',
   components: {
-    HeaderComp, ModalComp
+    HeaderComp, ModalComp, MyPage
   },
   data () {
     return {}
