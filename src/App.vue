@@ -128,7 +128,7 @@
 <script>
 import HeaderComp from './components/header/Header.vue'
 import ModalComp from './components/Modal.vue'
-import MyPage from './components/mypage/MyPage.vue'
+import MyPage from './components/mypage/MyPage_ui.vue'
 export default {
   name: 'app',
   components: {
