@@ -1,22 +1,17 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import Hello from '@/components/Hello'
-import Foo from '@/components/Foo'
+import VueRouter from 'vue-router'
+import MyPage from '../components/myPage/MyPage.vue'
+import Product from '../components/product/Product.vue'
+// import Hello from '@/components/Hello'
+// import Foo from '@/components/Foo'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
+export const router = new VueRouter({
   mode: 'history',
   routes: [
-    {
-      path: '/',
-      name: 'Hello',
-      component: Hello
-    },
-    {
-      path: '/foo',
-      name: 'Foo',
-      component: Foo
-    }
+    { path: '/', component: Product },
+    { path: '/my-page', component: MyPage },
+    { path: '*', component: Product }
   ]
 })

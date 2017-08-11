@@ -29,6 +29,9 @@ $grid-max-width: 1280px;
 .t-center{
   text-align: center;
 }
+.t-bold{
+  font-weight: bold;
+}
 .f-left{
   float:left;
 }
@@ -43,13 +46,12 @@ $grid-max-width: 1280px;
 button{
   border-radius: 3px;
   outline: none;
-  background: #484848;
-  border: 1px solid #3e3e3e;
-  margin-top: $leading /2;
+  background: #e1e1e1;
+  border: 1px solid #ddd;
   line-height: $leading-scale * 2;
   padding: 0 20px;
-  color: #fff;
-  font-size: 1.2rem;
+  font-weight: bold;
+  color: $base-font-color;
   cursor: pointer;
 }
 button.blue{
@@ -64,4 +66,18 @@ button.blue{
   width: 1px;
   height: 1px;
   margin: -1px;
+  color: #fff;
+}
+
+input[type=text], input[type=search]{
+  border: none;
+  line-height: $leading-scale * 2;  
+}
+textarea{
+  box-sizing: border-box;
+  resize: none;
+  border: none;
+}
+a, :hover, :focus{
+  text-decoration: none;
 }

@@ -5,6 +5,16 @@
         clear: both;
     }
 }
+@mixin thumbnail-hover{
+    &::after{
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.3;
+    }
+}
 
 // 미디어쿼리 믹스인
 @mixin mobile {
@@ -23,7 +33,6 @@
         @content;
     }
 }
-
 @mixin breakpoint($viewpoint) {
     @if $viewpoint == mobile {
         @media screen and (min-width: 320px) and (max-width: 767px){

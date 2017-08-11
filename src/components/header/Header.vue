@@ -1,19 +1,24 @@
 <template>
   <header class="header grid">
-    <h1 class="heading col col-d-2 col-t-2 col-m-1">
+    <h1 class="heading col col-d-3 col-t-2 col-m-1">
       <div class="box">
-        <img src="../../assets/mulmul_logo_w.png" alt="물물 로고">
+        <img src="../../assets/mulmul_logo.png" alt="물물 로고">
       </div>
     </h1>
-    <div class="search col col-d-7 col-t-4 col-m-3">
+    <div class="search col col-d-6 col-t-4 col-m-3">
       <div class="box t-center">
         <search></search>
       </div>
     </div>
-    <div class="sign-in col col-d-3 col-t-2 col-m-4">
+    <div class="sign-in-up col col-d-3 col-t-2 col-m-4">
       <div class="box t-right">
         <button type="button" class="btn-sign-in" @click="loginActived">로그인</button>
         <button type="button" class="btn-sign-up blue" @click="membershipActived">회원가입</button>
+        <!--임시-->
+        <ul class="login-utill-list">
+          <router-link tag="li" to="/"><a href>Home</a></router-link>
+          <router-link tag="li" to="/my-page"><a href>myPage</a></router-link>
+        </ul>
       </div>
     </div>
     <login></login>
