@@ -50,8 +50,18 @@ button{
   padding: 0 20px;
   color: #fff;
   font-size: 1.2rem;
+  cursor: pointer;
 }
 button.blue{
   background: #2f8be6;
   border: 1px solid #2983dd;
+}
+
+.a11y-hidden {
+  position: absolute;
+  overflow: hidden;
+  left: -10000em;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
 }
