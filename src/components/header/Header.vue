@@ -7,7 +7,10 @@
     </h1>
     <div class="search col col-d-6 col-t-4 col-m-3">
       <div class="box t-center">
-        <search></search>
+        <div class="goods-search-box">
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" class="input-search-goods" alt="상품검색창" placeholder="상품 또는 아이디를 검색하세요.">
+        </div>
       </div>
     </div>
     <div class="sign-in-up col col-d-3 col-t-2 col-m-4">
@@ -29,13 +32,11 @@
 import {mapActions} from 'vuex'
 import Login from './login/Login.vue'
 import Membership from './membership/membership.vue'
-import Search from './search/Search.vue'
 
 export default {
   components: {
     Login,
-    Membership,
-    Search
+    Membership
   },
   data () {
     return {}
@@ -56,12 +57,12 @@ export default {
 .sign-up {
   text-align: center;
 }
-// .btn-sign-in,
-// .membership-btn {
-//   padding: 0;
-//   border: none;
-//   background: none;
-//   vertical-align: middle;
-//   cursor: pointer;
-// }
+.login-btn,
+.membership-btn {
+  padding: 0;
+  border: none;
+  background: none;
+  vertical-align: middle;
+  cursor: pointer;
+}
 </style>

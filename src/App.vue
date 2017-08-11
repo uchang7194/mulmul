@@ -3,7 +3,7 @@
     <div class="header-wrapper">
       <header-comp></header-comp>
     </div>
-    <my-page></my-page>
+    <router-view></router-view>
     <!-- <main class="contents">
       <div class="grid">
         <div class="col col-d-3 col-t-4 col-m-4">
@@ -128,7 +128,7 @@
 <script>
 import HeaderComp from './components/header/Header.vue'
 import ModalComp from './components/Modal.vue'
-import MyPage from './components/mypage/MyPage_ui.vue'
+import MyPage from './components/mypage/MyPage.vue'
 export default {
   name: 'app',
   components: {

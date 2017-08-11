@@ -1,28 +1,30 @@
 <template>
-  <div class="col col-d-12 col-t-8 col-m-4">
-    <div class="box">
-      <div class="member-info grid">
-        <div class="col col-d-8 col-t-8 col-m-4 col-d-offset-2 alpha omega">
-          <div class="box">
-            <div class="member-pic">
-              사진
-            </div>
-            <span class="member-nickname">닉네임</span>
-            <button class="setting-btn" type="button">settings</button>
-            <div class="member-edit">
-              프로필 편집
-            </div>
-            <div class="member-product-info">
-              <ul class="product-info-list">
-                <li class="regist-pd">등록상품 <span class="regist-pd-count">0</span></li>
-                <li class="follower">팔로워 <span class="follower-count">0</span></li>
-                <li class="follow">팔로우 <span class="follow-count">0</span></li>
-              </ul>
-            </div>
-            <span class="member-name">이름</span>
-          </div>
-        </div>
-      </div>
+  <div class="mypage-user-info">
+    <div class="user-profile-box col col-d-3 col-t-1 col-m-4">
+      <p class="user-profile">프로필 사진</p>
+    </div>
+    <div class="user-info-box col col-d-8 col-t-3 col-m-4">
+      <p class="user-id f-left">misosng06</p>
+      <router-link :to="{name: 'memberEdit'}" tag="button" type="button" class="common btn-profile-modify f-left">
+        프로필 편집
+      </router-link>
+      <p class="count-box">
+        <span class="items">
+          <span class="count-title">게시물</span>
+          <span class="count-num t-bold">111</span>
+        </span>
+        <span class="follower">
+          <span class="count-title">팔로워</span>
+          <span class="count-num t-bold">222</span>
+        </span>
+        <span class="follow">
+          <span class="count-title">팔로우</span>
+          <span class="count-num t-bold">333</span>
+        </span>
+      </p>
+      <p class="user-msg">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit non veniam vero corporis itaque aperiam. Dignissimos ipsum modi in doloribus?
+      </p>          
     </div>
   </div>
 </template>

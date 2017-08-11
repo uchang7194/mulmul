@@ -4,21 +4,19 @@ const state = {
   // 수정하는 부분에서 사용되는 데이터
   // 닉네임, 주소정보, 교환방식, 연락처
   my: {
-    // modal이 활성화 되었는지 유무
-    actived: false,
     // 나의 정보
     info: {
+      my_picture: '',
       password: '',
       location: '',
-      msg: '',
-      tags: []
+      msg: ''
     },
     // input 태그의 포커스 이벤트 처리
     focuses: {
+      my_pictrue: false,
       password: false,
       location: false,
-      msg: false,
-      tags: false
+      msg: false
     }
   },
   // my_products
@@ -41,19 +39,19 @@ const getters = {
   }
 }
 
-// function toggleLoginInputFocus (obj, key) {
-//   // console.log('obj:', obj)
-//   // console.log('key:', key)
-//   for (let prop in obj) {
-//     if (obj.hasOwnProperty(prop)) {
-//       if (prop === key) {
-//         obj[prop] = true
-//       } else {
-//         obj[prop] = false
-//       }
-//     }
-//   }
-// }
+function toggleLoginInputFocus (obj, key) {
+  // console.log('obj:', obj)
+  // console.log('key:', key)
+  for (let prop in obj) {
+    if (obj.hasOwnProperty(prop)) {
+      if (prop === key) {
+        obj[prop] = true
+      } else {
+        obj[prop] = false
+      }
+    }
+  }
+}
 
 const mutations = {
   SET_MY_INFO (state, payload) {
@@ -68,12 +66,14 @@ const mutations = {
   },
   CHANGE_MYPAGE_FOCUS (state, payload) {
     // console.log('membershipFocus: ', payload)
-    if (state.my.actived) {
-      // if (payload.target.getAttribute('class') === 'membership') {
-      //   state.isMembershipActive = false
-      // }
-      // toggleLoginInputFocus()
+    // if (payload.target.getAttribute('class') === 'membership') {
+    //   state.isMembershipActive = false
+    // }
+    // toggleLoginInputFocus()
+    if (payload.getAttribute('id') === 'edit-password') {
+      toggleLoginInputFocus(state.my.focuses, 'password')
     }
+    console.log(payload)
   }
 }
 
