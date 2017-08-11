@@ -79,8 +79,8 @@
   }
 
   .search-list{
-    background: green;
+    background: #fff;
     line-height: $leading-scale * 2;
-    color: #fff;
+    color: #000;
   }
 </style>
