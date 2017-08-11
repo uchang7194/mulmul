@@ -1,11 +1,116 @@
 <template>
-  <div class="col col-d-12 col-t-8 col-m-4">
-    <div class="box">
-      <div class="products">
-        <div class="box_1">1</div>
-        <div class="box_2">2</div>
-        <div class="box_3">3</div>
-        <div class="box_4">4</div>
+  <div class="user-item-list">
+    <div class="col col-d-3 col-t-4 col-m-4">
+      <div class="box">
+        <div class="add-goods-box t-center">
+          <i class="fa fa-plus fa-5x" aria-hidden="true"></i>
+          <p>add item!</p>
+        </div>
+      </div>
+    </div>
+    <div class="col col-d-3 col-t-4 col-m-4">
+      <div class="box">
+        <div class="goods-thumbnail-box">
+          <img src="../../../assets/goods/goods_02.jpg" alt="image">
+        </div>
+      </div>
+    </div>
+    <div class="col col-d-3 col-t-4 col-m-4">
+      <div class="box">
+        <div class="goods-thumbnail-box">
+          <img src="../../../assets/goods/goods_03.png" alt="image">
+        </div>
+      </div>
+    </div>
+    <div class="col col-d-3 col-t-4 col-m-4">
+      <div class="box">
+        <div class="goods-thumbnail-box">
+          <img src="../../../assets/goods/goods_04.jpg" alt="image">
+        </div>
+      </div>
+    </div>
+    <div class="col col-d-3 col-t-4 col-m-4">
+      <div class="box">
+        <div class="goods-thumbnail-box">
+          <img src="../../../assets/goods/goods_05.jpeg" alt="image">
+        </div>
+      </div>
+    </div>
+    <div class="col col-d-3 col-t-4 col-m-4">
+      <div class="box">
+        <div class="goods-thumbnail-box">
+          <img src="../../../assets/goods/goods_06.jpg" alt="image">
+        </div>
+      </div>
+    </div>
+    <div class="col col-d-3 col-t-4 col-m-4">
+      <div class="box">
+        <div class="goods-thumbnail-box">
+          <img src="../../../assets/goods/goods_07.png" alt="image">
+        </div>
+      </div>
+    </div>
+    <div class="col col-d-3 col-t-4 col-m-4">
+      <div class="box">
+        <div class="goods-thumbnail-box">
+          <img src="../../../assets/goods/goods_08.jpg" alt="image">
+        </div>
+      </div>
+    </div>
+    <div class="col col-d-3 col-t-4 col-m-4">
+      <div class="box">
+        <div class="goods-thumbnail-box">
+          <img src="../../../assets/goods/goods_01.jpg" alt="image">
+        </div>
+      </div>
+    </div>
+    <div class="col col-d-3 col-t-4 col-m-4">
+      <div class="box">
+        <div class="goods-thumbnail-box">
+          <img src="../../../assets/goods/goods_02.jpg" alt="image">
+        </div>
+      </div>
+    </div>
+    <div class="col col-d-3 col-t-4 col-m-4">
+      <div class="box">
+        <div class="goods-thumbnail-box">
+          <img src="../../../assets/goods/goods_03.png" alt="image">
+        </div>
+      </div>
+    </div>
+    <div class="col col-d-3 col-t-4 col-m-4">
+      <div class="box">
+        <div class="goods-thumbnail-box">
+          <img src="../../../assets/goods/goods_04.jpg" alt="image">
+        </div>
+      </div>
+    </div>
+    <div class="col col-d-3 col-t-4 col-m-4">
+      <div class="box">
+        <div class="goods-thumbnail-box">
+          <img src="../../../assets/goods/goods_05.jpeg" alt="image">
+        </div>
+      </div>
+    </div>
+    <div class="col col-d-3 col-t-4 col-m-4">
+      <div class="box">
+        <div class="goods-thumbnail-box">
+          <img src="../../../assets/goods/goods_06.jpg" alt="image">
+        </div>
+      </div>
+    </div>
+    <div class="col col-d-3 col-t-4 col-m-4">
+      <div class="box">
+        <div class="goods-thumbnail-box">
+          <img src="../../../assets/goods/goods_07.png" alt="image">
+        </div>
+      </div>
+    </div>
+    <div class="col col-d-3 col-t-4 col-m-4">
+      <div class="box">
+        <div class="goods-thumbnail-box">
+          <img src="../../../assets/goods/goods_08.jpg" alt="image">
+        </div>
       </div>
     </div>
   </div>

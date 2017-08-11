@@ -68,7 +68,6 @@ const mutations = {
     state.isMembershipActive = !state.isMembershipActive
   },
   changeMembershipFocus (state, payload) {
-    console.log('membershipFocus: ', payload)
     if (state.isMembershipActive) {
       if (payload.target.getAttribute('class') === 'membership') {
         state.isMembershipActive = false

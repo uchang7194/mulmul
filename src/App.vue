@@ -3,7 +3,7 @@
     <div class="header-wrapper">
       <header-comp></header-comp>
     </div>
-    <my-page></my-page>
+    <router-view></router-view>
     <!-- <main class="contents">
       <div class="grid">
         <div class="col col-d-3 col-t-4 col-m-4">
