@@ -5,9 +5,12 @@ import App from './App'
 import {router} from './router/'
 import {store} from './store/'
 import axios from 'axios'
+// import daum from './API/daum.js'
 import './scss/stylesheet.scss'
 
 Vue.prototype.$http = axios
+Vue.prototype.$daum = window.daum
+console.log('is daum?: ', Vue.prototype.$daum)
 
 Vue.config.productionTip = false
 Vue.directive('focus', {
@@ -22,6 +25,7 @@ new Vue({
   el: '#app',
   router,
   store,
+  // daum,
   template: '<App/>',
   components: { App }
 })

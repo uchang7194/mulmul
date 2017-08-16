@@ -5,12 +5,12 @@
         <legend class="a11y-hidden">회원가입 폼</legend>
           <p class="title">회원가입</p>
           <membership-email></membership-email>
-          <membership-email-confirm></membership-email-confirm>
           <membership-password></membership-password>
+          <membership-password-confirm></membership-password-confirm>
           <membership-name></membership-name>
           <membership-nickname></membership-nickname>
-          <button class="membership-submit-btn" type="button" @click="requestMemberData" @focus="changeFocus($event)">
-            <span v-if="!loading">등록하기</span>
+          <button class="membership-submit-btn" type="button" @click="requestMemberData">
+            <span v-if="!loading" class="member-submit-span" @click="requestMemberData">등록하기</span>
             <i v-else-if="loading" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
           </button>
       </fieldset>
@@ -20,7 +20,7 @@
 <script>
 import {mapGetters, mapActions} from 'vuex'
 import MembershipEmail from './MembershipEmail.vue'
-import MembershipEmailConfirm from './MembershipEmailConfirm.vue'
+import MembershipPasswordConfirm from './MembershipPasswordConfirm.vue'
 import MembershipPassword from './MembershipPassword.vue'
 import MembershipName from './MembershipName.vue'
 import MembershipNickname from './MembershipNickname.vue'
@@ -28,7 +28,7 @@ import MembershipNickname from './MembershipNickname.vue'
 export default {
   components: {
     MembershipEmail,
-    MembershipEmailConfirm,
+    MembershipPasswordConfirm,
     MembershipPassword,
     MembershipName,
     MembershipNickname
@@ -40,65 +40,101 @@ export default {
   },
   methods: {
     ...mapActions({
-      'close': 'isChangedMembershipFocus'
+      'close': 'isChangedMembershipFocus',
+      'setMemberFocus': 'setMemberValidationFocus'
     }),
     changeFocus (e) {
-      let target = e.target
-      this.close({target})
+      if (e.nodeType === 1) {
+        this.close(e)
+        return
+      } else {
+        let target = e.target
+        if (target.getAttribute('class') === 'membership-submit-btn' || target.getAttribute('class') === 'member-submit-span') {
+          return
+        }
+        this.close({target})
+      }
+    },
+    memberValidationStateChange (target, id) {
+      let el = target.querySelector(id)
+      el.focus()
+      this.changeFocus(el)
+      this.loading = false
+    },
+    memberValidation (data) {
+      // 비었는지
+      let target = this.$el
+      for (let prop in data) {
+        if (data.hasOwnProperty(prop)) {
+          // 데이터가 없다면 && validation이 false라면
+          if (prop === 'email' && data[prop].trim() === '') {
+            this.memberValidationStateChange(target, '#membership-email')
+            console.log('email 데이터가 비어있을 때')
+            return false
+          } else if (prop === 'email' && !this.emailValidation) {
+            this.memberValidationStateChange(target, '#membership-email')
+            console.log('email 유효성검사가 실패했을 때')
+            return false
+          }
+          if (prop === 'password1' && data[prop].trim() === '') {
+            this.memberValidationStateChange(target, '#membership-pwd')
+            console.log('password1 데이터가 비어있을 때')
+            return false
+          } else if (prop === 'password2' && !this.pwdValidation) {
+            this.memberValidationStateChange(target, '#membership-pwd')
+            console.log('password1 유효성검사가 실패했을 때')
+            return false
+          }
+          if (prop === 'password2' && data[prop].trim() === '') {
+            this.memberValidationStateChange(target, '#membership-passwordConfirm')
+            console.log('password2 데이터가 비어있을 때')
+            return false
+          } else if (prop === 'password2' && !this.pwdConfirmIsOk) {
+            this.memberValidationStateChange(target, '#membership-passwordConfirm')
+            console.log('password2 유효성검사가 실패했을 때')
+            return false
+          }
+          if (prop === 'name' && data[prop].trim() === '') {
+            this.memberValidationStateChange(target, '#membership-name')
+            console.log('name 데이터가 비어있을 때')
+            return false
+          }
+          if (prop === 'nickname' && data[prop].trim() === '') {
+            this.memberValidationStateChange(target, '#membership-nickname')
+            console.log('nickname 데이터가 비어있을 때')
+            return false
+          }
+        }
+      }
+      return true
     },
     requestMemberData () {
       this.loading = true
 
-      // this.$http.post('http://mulmul.xyz/api/member/register/', {
-      //   'pk': 13,
-      //   'nickname': this.getNickname,
-      //   'name': this.getName,
-      //   'email': this.getEmail,
-      //   'profile_image': null,
-      //   'user_type': 'D',
-      //   'post_code': null,
-      //   'road_address': null,
-      //   'detail_address': null,
-      //   'date_joined': '2017-08-11T03:27:20.124831Z',
-      //   'last_login': null
-      // }).then((response) => {
-      //   console.log(response)
-      //   if (response === 200) {
-      //     this.loading = false
-      //   }
-      // }).catch((error) => {
-      //   console.log(error)
-      //   this.loading = false
-      // })
+      let data = {
+        'email': this.getEmail,
+        'password1': this.getPwd,
+        'password2': this.getConfirmPwd,
+        'name': this.getName,
+        'nickname': this.getNickname
+      }
+
+      if (!this.memberValidation(data)) { return }
 
       this.$http({
         method: 'post',
-        url: 'http://mulmul.xyz/api/member/register/',
-        // 'Access-Control-Request-Headers': '*',
-        // params: {
-        //   pk: 1
-        // }
-        data: {
-          'pk': 13,
-          'nickname': this.getNickname,
-          'name': this.getName,
-          'email': this.getEmail,
-          'profile_image': null,
-          'user_type': 'D',
-          'post_code': null,
-          'road_address': null,
-          'detail_address': null,
-          'date_joined': '2017-08-11T03:27:20.124831Z',
-          'last_login': null
-        },
+        url: 'http://mulmul.xyz/member/',
+        data: data,
         headers: {
           'Content-Type': 'application/json'
         }
       }).then((response) => {
         console.log(response)
         if (response === 200) {
+          console.log('연결 성공')
           console.log(response)
           this.loading = false
+          this.isActive()
         }
       }).catch((error) => {
         console.log(error)
@@ -111,7 +147,11 @@ export default {
       'isActive': 'getMembershipActive',
       'getEmail': 'getMembershipEmail',
       'getPwd': 'getMembershipPassword',
+      'getConfirmPwd': 'getMembershipPasswordConfirmValue',
       'getName': 'getMembershipName',
+      'emailValidation': 'getMembershipEmailValidation',
+      'pwdValidation': 'getMembershipPasswordValidation',
+      'pwdConfirmIsOk': 'getMembershipPasswordConfirmIsOk',
       'getNickname': 'getMembershipNickName'
     })
   }

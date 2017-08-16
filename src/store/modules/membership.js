@@ -5,17 +5,20 @@ const state = {
       value: '',
       validation: false
     },
-    email_confirm: {
+    password_confirm: {
       value: '',
       is_ok: false
     },
-    password: '',
+    password: {
+      value: '',
+      validation: false
+    },
     name: '',
     nickname: ''
   },
   member_input_focus: {
     email: false,
-    email_confirm: false,
+    password_confirm: false,
     password: false,
     name: false,
     nickname: false
@@ -31,14 +34,17 @@ const getters = {
   getMembershipEmailValidation (state) {
     return state.member_info.email.validation
   },
-  getMembershipEmailConfirmValue (state) {
-    return state.member_info.email_confirm.value
+  getMembershipPasswordConfirmValue (state) {
+    return state.member_info.password_confirm.value
   },
-  getMembershipEmailConfirmIsOk (state) {
-    return state.member_info.email_confirm.is_ok
+  getMembershipPasswordConfirmIsOk (state) {
+    return state.member_info.password_confirm.is_ok
   },
   getMembershipPassword (state) {
-    return state.member_info.password
+    return state.member_info.password.value
+  },
+  getMembershipPasswordValidation (state) {
+    return state.member_info.password.validation
   },
   getMembershipName (state) {
     return state.member_info.name
@@ -68,23 +74,28 @@ const mutations = {
     state.isMembershipActive = !state.isMembershipActive
   },
   changeMembershipFocus (state, payload) {
+    console.log('payload: ', payload)
     if (state.isMembershipActive) {
-      if (payload.target.getAttribute('class') === 'membership') {
+      let target = (payload.nodeType === 1) ? target = payload : target = payload.target
+      if (target.getAttribute('class') === 'membership') {
         state.isMembershipActive = false
-      } else if (payload.target.getAttribute('id') === 'membership-email') {
+      } else if (target.getAttribute('id') === 'membership-email') {
         toggleLoginInputFocus(state.member_input_focus, 'email')
-      } else if (payload.target.getAttribute('id') === 'membership-pwd') {
+      } else if (target.getAttribute('id') === 'membership-pwd') {
         toggleLoginInputFocus(state.member_input_focus, 'password')
-      } else if (payload.target.getAttribute('id') === 'membership-emailConfirm') {
-        toggleLoginInputFocus(state.member_input_focus, 'email_confirm')
-      } else if (payload.target.getAttribute('id') === 'membership-name') {
+      } else if (target.getAttribute('id') === 'membership-passwordConfirm') {
+        toggleLoginInputFocus(state.member_input_focus, 'password_confirm')
+      } else if (target.getAttribute('id') === 'membership-name') {
         toggleLoginInputFocus(state.member_input_focus, 'name')
-      } else if (payload.target.getAttribute('id') === 'membership-nickname') {
+      } else if (target.getAttribute('id') === 'membership-nickname') {
         toggleLoginInputFocus(state.member_input_focus, 'nickname')
       } else {
         toggleLoginInputFocus(state.member_input_focus, '')
       }
     }
+  },
+  setMemberValidationFocus (state, payload) {
+    toggleLoginInputFocus(state.member_input_focus, payload)
   },
   setMembershipEmail (state, payload) {
     state.member_info.email.value = payload
@@ -92,14 +103,17 @@ const mutations = {
   setMembershipEmailValidation (state, payload) {
     state.member_info.email.validation = payload
   },
-  setMembershipEmailConfirmValue (state, payload) {
-    state.member_info.email_confirm.value = payload
+  setMembershipPasswordConfirmValue (state, payload) {
+    state.member_info.password_confirm.value = payload
   },
-  setMembershipEmailConfirmIsOk (state, payload) {
-    state.member_info.email_confirm.is_ok = payload
+  setMembershipPasswordConfirmIsOk (state, payload) {
+    state.member_info.password_confirm.is_ok = payload
   },
   setMembershipPassword (state, payload) {
-    state.member_info.password = payload
+    state.member_info.password.value = payload
+  },
+  setMembershipPasswordValidation (state, payload) {
+    state.member_info.password.validation = payload
   },
   setMembershipName (state, payload) {
     state.member_info.name = payload
@@ -115,20 +129,26 @@ const actions = {
   isChangedMembershipFocus ({commit}, payload) {
     commit('changeMembershipFocus', payload)
   },
+  setMemberValidationFocus ({commit}, payload) {
+    commit('setMemberValidationFocus', payload)
+  },
   setMembershipEmail ({commit}, payload) {
     commit('setMembershipEmail', payload)
   },
   setMembershipEmailValidation ({commit}, payload) {
     commit('setMembershipEmailValidation', payload)
   },
-  setMembershipEmailConfirmValue ({commit}, payload) {
-    commit('setMembershipEmailConfirmValue', payload)
+  setMembershipPasswordConfirmValue ({commit}, payload) {
+    commit('setMembershipPasswordConfirmValue', payload)
   },
-  setMembershipEmailConfirmIsOk ({commit}, payload) {
-    commit('setMembershipEmailConfirmIsOk', payload)
+  setMembershipPasswordConfirmIsOk ({commit}, payload) {
+    commit('setMembershipPasswordConfirmIsOk', payload)
   },
   setMembershipPassword ({commit}, payload) {
     commit('setMembershipPassword', payload)
+  },
+  setMembershipPasswordValidation ({commit}, payload) {
+    commit('setMembershipPasswordValidation', payload)
   },
   setMembershipName ({commit}, payload) {
     commit('setMembershipName', payload)

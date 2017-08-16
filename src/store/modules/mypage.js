@@ -7,14 +7,23 @@ const state = {
     // 나의 정보
     info: {
       my_picture: '',
-      password: '',
-      location: '',
+      password: {
+        value: '',
+        validate: false
+      },
+      confirm_password: '',
+      location: {
+        postcode: '',
+        addr: '',
+        detail_addr: ''
+      },
       msg: ''
     },
     // input 태그의 포커스 이벤트 처리
     focuses: {
       my_pictrue: false,
       password: false,
+      confirm_password: false,
       location: false,
       msg: false
     }
@@ -36,6 +45,9 @@ const getters = {
   },
   getMyPostedPd (state) {
     return state.my_posted_pd
+  },
+  getFocuses (state) {
+    return state.my.focuses
   }
 }
 
@@ -58,6 +70,24 @@ const mutations = {
     // payload를 객체로 받아서 한번에 세팅
     state.my.info = payload
   },
+  SET_MY_INFO_PASSWORD (state, payload) {
+    state.my.info.password.value = payload.value
+    state.my.info.password.validate = payload.validate
+  },
+  SET_MY_INFO_CONFIRM_PASSWORD (state, payload) {
+    state.my.info.confirm_password = payload
+  },
+  SET_MY_INFO_LOCATION (state, payload) {
+    state.my.info.location.addr = payload.addr
+    state.my.info.location.detail_addr = payload.detail_addr
+    state.my.info.location.postcode = payload.postcode
+  },
+  SET_MY_INFO_LOCATION_DETAIL_ADDR (state, payload) {
+    state.my.info.location.detail_addr = payload
+  },
+  SET_MY_INFO_MSG (state, payload) {
+    state.my.info.msg = payload
+  },
   // 게시할 물품정보를 받아오는 함수.
   SET_POSTED_PD (state, payload) {
     // payload = integer
@@ -72,14 +102,36 @@ const mutations = {
     // toggleLoginInputFocus()
     if (payload.getAttribute('id') === 'edit-password') {
       toggleLoginInputFocus(state.my.focuses, 'password')
+      console.log('password: ', state.my.focuses)
+    } else if (payload.getAttribute('id') === 'edit-confirm-password') {
+      toggleLoginInputFocus(state.my.focuses, 'confirm_password')
+      console.log('password_confirm: ', state.my.focuses)
+    } else {
+      toggleLoginInputFocus(state.my.focuses, '')
     }
-    console.log(payload)
   }
 }
 
 const actions = {
   setMyInfo ({commit}, payload) {
     commit('SET_MY_INFO', payload)
+  },
+  setMyInfoPassword ({commit}, payload) {
+    console.log(payload)
+    commit('SET_MY_INFO_PASSWORD', payload)
+  },
+  setMyInfoConfirmPassword ({commit}, payload) {
+    commit('SET_MY_INFO_CONFIRM_PASSWORD', payload)
+  },
+  setMyInfoMsg ({commit}, payload) {
+    commit('SET_MY_INFO_MSG', payload)
+  },
+  setMyInfoLocation ({commit}, payload) {
+    // payload === {}
+    commit('SET_MY_INFO_LOCATION', payload)
+  },
+  setMyInfoLocationDetailAddr ({commit}, payload) {
+    commit('SET_MY_INFO_LOCATION_DETAIL_ADDR', payload)
   },
   setPostedPd ({commit}, payload) {
     commit('SET_POSTED_PD', payload)
