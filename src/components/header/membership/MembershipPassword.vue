@@ -24,7 +24,8 @@ export default {
   methods: {
     ...mapActions({
       'isFocused': 'isChangedMembershipFocus',
-      'setPwdValue': 'setMembershipPassword'
+      'setPwdValue': 'setMembershipPassword',
+      'setPasswordValidation': 'setMembershipPasswordValidation'
     }),
     changeFocus (e) {
       let target = e.target
@@ -32,12 +33,13 @@ export default {
     },
     pwdValidation (pwd) {
       let reg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/
-      // let pwdValue = '' + pwd
+      let result = reg.test(pwd)
       if (pwd.trim() !== '') {
-        this.validation.state = reg.test(pwd)
+        this.validation.state = result
       } else {
-        this.validation.state = false
+        this.validation.state = result
       }
+      this.setPasswordValidation(result)
     }
   },
   computed: {

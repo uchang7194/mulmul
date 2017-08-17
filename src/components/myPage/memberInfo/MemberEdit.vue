@@ -1,5 +1,5 @@
 <template>
-  <div class="member-edit">
+  <div class="member-edit" v-if="isToken" @click="changeFocus($event)">
     <form method="post" action="" class="member-edit-form">
       <fieldset>
         <legend class="a11y-hidden">프로필 수정 폼</legend>
@@ -8,7 +8,7 @@
         <member-edit-confirm-pwd></member-edit-confirm-pwd>
         <member-edit-msg></member-edit-msg>
         <member-edit-addr></member-edit-addr>
-        <button type="submit" @focus="changeFocus($event)">수정하기</button>
+        <button type="submit" class="edit-form-btn" @focus="changeFocus($event)">수정하기</button>
       </fieldset>
     </form>
   </div>
@@ -20,7 +20,7 @@ import MemberEditConfirmPwd from './memberEdit/MemberEditConfirmPwd.vue'
 import MemberEditPic from './memberEdit/MemberEditPic.vue'
 import MemberEditMsg from './memberEdit/MemberEditMsg.vue'
 import MemberEditAddr from './memberEdit/MemberEditAddr.vue'
-import {mapActions} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   components: {
@@ -41,6 +41,14 @@ export default {
       let target = event.target
       this.isFocused(target)
     }
+  },
+  computed: {
+    ...mapGetters({
+      'hasToken': 'getToken'
+    }),
+    isToken () {
+      return this.hasToken === '' ? false : true
+    }
   }
 }
 </script>
@@ -49,14 +57,33 @@ export default {
 .member-edit {
   .input-box {
     margin-bottom: 20px;
+    position: relative;
+
+    .validation-msg {
+      position: absolute;
+      bottom: -2rem;
+      font-size: 1.2rem;
+    }
   }
   label {
-    display: inline-block;
-    width: 10rem;
-    text-align: center;
+    display: block;
   }
-  input[type="text"] {
+  input {
+    box-sizing: border-box;
     border: 1px solid #eee;
+    height: 25px;
+    width: 100%;
+    padding: 0 0 0 7px;
   }
+}
+.member-edit-form {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.edit-form-btn {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 </style>
