@@ -72,6 +72,7 @@ function toggleLoginInputFocus (obj, key) {
 const mutations = {
   changeisMembershipActive (state) {
     state.isMembershipActive = !state.isMembershipActive
+    console.log(state.isMembershipActive)
   },
   changeMembershipFocus (state, payload) {
     console.log('payload: ', payload)
@@ -96,6 +97,10 @@ const mutations = {
   },
   setMemberValidationFocus (state, payload) {
     toggleLoginInputFocus(state.member_input_focus, payload)
+  },
+  setMembershipAllData (state, payload) {
+    state.member_info = payload.member_info
+    toggleLoginInputFocus(state.member_input_focus, payload.focus)
   },
   setMembershipEmail (state, payload) {
     state.member_info.email.value = payload
@@ -128,6 +133,9 @@ const actions = {
   },
   isChangedMembershipFocus ({commit}, payload) {
     commit('changeMembershipFocus', payload)
+  },
+  setMembershipAllData ({commit}, payload) {
+    commit('setMembershipAllData', payload)
   },
   setMemberValidationFocus ({commit}, payload) {
     commit('setMemberValidationFocus', payload)

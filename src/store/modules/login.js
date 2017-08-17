@@ -20,9 +20,14 @@ const mutations = {
   // 로그인 창 활성화 유무
   changeIsLoginActived (state) {
     state.isLoginActived = !state.isLoginActived
+    console.log(state.isLoginActived)
   },
   changeLoginFocus (state, payload) {
     state.isLoginActived && (payload.target.getAttribute('class') === 'login') ? state.isLoginActived = false : state.isLoginActived = state.isLoginActived
+  },
+  setLoginDataAll (state, payload) {
+    state.email = payload.email
+    state.password = payload.password
   },
   setLoginPassword (state, payload) {
     state.password = payload
@@ -38,6 +43,9 @@ const actions = {
   },
   isChangedLoginFocus ({commit}, payload) {
     commit('changeLoginFocus', payload)
+  },
+  setLoginDataAll ({commit}, payload) {
+    commit('setLoginDataAll', payload)
   },
   setLoginPassword ({commit}, payload) {
     commit('setLoginPassword', payload)

@@ -1,5 +1,5 @@
 <template>
-  <main class="contents">
+  <main v-if="isToken" class="contents">
     <div class="grid">
       <member-info></member-info>
       <product></product>
@@ -11,6 +11,7 @@
 import MemberInfo from './memberInfo/MemberInfo.vue'
 import Product from './product/Product.vue'
 import Modal from '../Modal.vue'
+import {mapGetters} from 'vuex'
 
 export default {
   components: {
@@ -20,6 +21,14 @@ export default {
   },
   data () {
     return {}
+  },
+  computed: {
+    ...mapGetters({
+      'hasToken': 'getToken'
+    }),
+    isToken () {
+      return this.hasToken === '' ? false : true
+    }
   }
 }
 </script>

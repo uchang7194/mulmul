@@ -1,5 +1,5 @@
 <template>
-  <div class="member-edit" @click="changeFocus($event)">
+  <div class="member-edit" v-if="isToken" @click="changeFocus($event)">
     <form method="post" action="" class="member-edit-form">
       <fieldset>
         <legend class="a11y-hidden">프로필 수정 폼</legend>
@@ -20,7 +20,7 @@ import MemberEditConfirmPwd from './memberEdit/MemberEditConfirmPwd.vue'
 import MemberEditPic from './memberEdit/MemberEditPic.vue'
 import MemberEditMsg from './memberEdit/MemberEditMsg.vue'
 import MemberEditAddr from './memberEdit/MemberEditAddr.vue'
-import {mapActions} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   components: {
@@ -40,6 +40,14 @@ export default {
     changeFocus (event) {
       let target = event.target
       this.isFocused(target)
+    }
+  },
+  computed: {
+    ...mapGetters({
+      'hasToken': 'getToken'
+    }),
+    isToken () {
+      return this.hasToken === '' ? false : true
     }
   }
 }

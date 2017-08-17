@@ -9,7 +9,7 @@
           <membership-password-confirm></membership-password-confirm>
           <membership-name></membership-name>
           <membership-nickname></membership-nickname>
-          <button class="membership-submit-btn" type="button" @click="requestMemberData">
+          <button class="membership-submit-btn" type="button">
             <span v-if="!loading" class="member-submit-span" @click="requestMemberData">등록하기</span>
             <i v-else-if="loading" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
           </button>
@@ -41,7 +41,9 @@ export default {
   methods: {
     ...mapActions({
       'close': 'isChangedMembershipFocus',
-      'setMemberFocus': 'setMemberValidationFocus'
+      'setMemberFocus': 'setMemberValidationFocus',
+      'changeMembershipActive': 'isChangedMembershipActive',
+      'setInfoDataAll': 'setMembershipAllData'
     }),
     changeFocus (e) {
       if (e.nodeType === 1) {
@@ -108,6 +110,28 @@ export default {
       }
       return true
     },
+    initMemberInfoData (vm) {
+      vm = vm || this
+      vm.setInfoDataAll({
+        member_info: {
+          email: {
+            value: '',
+            validation: false
+          },
+          password_confirm: {
+            value: '',
+            is_ok: false
+          },
+          password: {
+            value: '',
+            validation: false
+          },
+          name: '',
+          nickname: ''
+        },
+        focus: ''
+      })
+    },
     requestMemberData () {
       this.loading = true
 
@@ -121,6 +145,7 @@ export default {
 
       if (!this.memberValidation(data)) { return }
 
+      let vm = this
       this.$http({
         method: 'post',
         url: 'http://mulmul.xyz/member/',
@@ -131,15 +156,17 @@ export default {
       }).then((response) => {
         console.log(response)
         if (response === 200) {
-          console.log('연결 성공')
-          console.log(response)
-          this.loading = false
-          this.isActive()
+          vm.loading = false
+          vm.changeMembershipActive()
+          vm.initMemberInfoData(vm)
+          console.log('끝나야 정상인데?')
         }
       }).catch((error) => {
         console.log(error)
         this.loading = false
       })
+      // window.setTimeout(function () {
+      // }, 3000)
     }
   },
   computed: {
@@ -226,6 +253,9 @@ export default {
 .membership-submit-btn {
   margin-top: 35px;
   background-color: rgb(56, 151, 204);
+  span {
+    display: block;
+  }
   .fa {
     font-size: 2rem;
   }

@@ -7,7 +7,10 @@
                 <email></email>
                 <password></password>
                 <button class="facebook-login-btn" type="button">Facebook</button>
-                <button class="login-submit-btn" type="button">로그인</button>
+                <button class="login-submit-btn" type="button">
+                  <span v-if="!loading" class="login-submit-span" @click="requestToken">등록하기</span>
+                  <i v-else-if="loading" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                </button>
             </fieldset>
         </form>
     </div>
@@ -23,16 +26,34 @@ export default {
     Password
   },
   data () {
-    return {}
+    return {
+      loading: false
+    }
   },
   methods: {
     ...mapActions({
+      'setLoginDataAll': 'setLoginDataAll',
       'btnClicked': 'isChangedLoginActive',
-      'close': 'isChangedLoginFocus'
+      'close': 'isChangedLoginFocus',
+      'setToken': 'setToken'
     }),
     closeLoginModal (e) {
       let target = e.target
       this.close({target})
+    },
+    requestToken () {
+      this.loading = true
+      window.setTimeout(() => {
+        this.btnClicked()
+        this.loading = false
+        this.setLoginDataAll({
+          email: '',
+          password: ''
+        })
+        this.setToken('adasd1!@!ada3!@')
+        // 서버에서 email과 pwd를 넘겼을 때 성공했다면
+        // response 객체에서 token값을 찾아 localstorage에 저장.
+      }, 3000)
     }
   },
   computed: {
@@ -127,5 +148,11 @@ export default {
 .login-submit-btn {
   margin-top: 10px;
   background-color: rgb(56, 151, 204);
+  span {
+    display: block;
+  }
+  .fa {
+    font-size: 2rem;
+  }
 }
 </style>
