@@ -8,7 +8,7 @@
         <member-edit-confirm-pwd></member-edit-confirm-pwd>
         <member-edit-msg></member-edit-msg>
         <member-edit-addr></member-edit-addr>
-        <button type="submit" class="edit-form-btn" @focus="changeFocus($event)">수정하기</button>
+        <router-link tag="button" to="/my-page" class="edit-form-btn" @focus="changeFocus($event)"><span @click="changeUpdateBtnState">수정하기</span></router-link>
       </fieldset>
     </form>
   </div>
@@ -31,23 +31,69 @@ export default {
     MemberEditAddr
   },
   data () {
-    return {}
+    return {
+      my_info: {
+        my_picture: '',
+        password: {
+          value: '',
+          validate: false
+        },
+        confirm_password: '',
+        location: {
+          postcode: '',
+          addr: '',
+          detail_addr: ''
+        },
+        msg: ''
+      }
+    }
   },
   methods: {
     ...mapActions({
-      'isFocused': 'changeMyPageFocus'
+      'isFocused': 'changeMyPageFocus',
+      'setMyInfo': 'setMyInfo',
+      'setUpdateBtn': 'setClickedUpdateBtn'
     }),
     changeFocus (event) {
       let target = event.target
       this.isFocused(target)
+    },
+    changeUpdateBtnState () {
+      this.setUpdateBtn(true)
     }
   },
   computed: {
     ...mapGetters({
-      'hasToken': 'getToken'
+      'hasToken': 'getToken',
+      'isClickedUpdateBtn': 'getClickedUpdateBtn',
+      'info': 'getMyInfo'
     }),
     isToken () {
       return this.hasToken === '' ? false : true
+    }
+  },
+  mounted: function () {
+    let info = this.my_info
+    let vuexInfo = this.info
+    for (let prop in info) {
+      if (info.hasOwnProperty(prop)) {
+        if (prop === 'password') {
+          info[prop].value = vuexInfo[prop].value
+          info[prop].validate = vuexInfo[prop].validate
+        } else if (prop === 'location') {
+          info[prop].postcode = vuexInfo[prop].postcode
+          info[prop].addr = vuexInfo[prop].addr
+          info[prop].detail_addr = vuexInfo[prop].detail_addr
+        } else {
+          info[prop] = vuexInfo[prop]
+        }
+      }
+    }
+    this.setUpdateBtn(false)
+  },
+  beforeDestroy: function () {
+    if (!this.isClickedUpdateBtn) {
+      this.setMyInfo(this.my_info)
     }
   }
 }
@@ -85,5 +131,8 @@ export default {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
+  span {
+    display: block;
+  }
 }
 </style>

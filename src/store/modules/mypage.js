@@ -6,7 +6,10 @@ const state = {
   my: {
     // 나의 정보
     info: {
-      my_picture: '',
+      my_picture: {
+        file: null,
+        data: ''
+      },
       password: {
         value: '',
         validate: false
@@ -26,7 +29,8 @@ const state = {
       confirm_password: false,
       location: false,
       msg: false
-    }
+    },
+    clicked_update_btn: false
   },
   // my_products
   // 서버에서 받아온 물품들을 캐시해둠.
@@ -48,6 +52,9 @@ const getters = {
   },
   getFocuses (state) {
     return state.my.focuses
+  },
+  getClickedUpdateBtn (state) {
+    return state.my.clicked_update_btn
   }
 }
 
@@ -66,9 +73,29 @@ function toggleLoginInputFocus (obj, key) {
 }
 
 const mutations = {
+  INIT_MYPAGE_DATA (state) {
+    // profile
+    let info = state.my.info
+    info.my_picture.file = null
+    info.my_picture.data = ''
+    info.password.value = ''
+    info.password.validate = false
+    info.confirm_password = ''
+    info.location.postcode = ''
+    info.location.addr = ''
+    info.location.detail_addr = ''
+    // 물건 등록
+    // 물건 데이터
+  },
   SET_MY_INFO (state, payload) {
     // payload를 객체로 받아서 한번에 세팅
     state.my.info = payload
+  },
+  SET_MY_INFO_PICTURE_FILE (state, payload) {
+    state.my.info.my_picture.file = payload
+  },
+  SET_MY_INFO_PICTURE_DATA (state, payload) {
+    state.my.info.my_picture.data = payload
   },
   SET_MY_INFO_PASSWORD (state, payload) {
     state.my.info.password.value = payload.value
@@ -87,6 +114,9 @@ const mutations = {
   },
   SET_MY_INFO_MSG (state, payload) {
     state.my.info.msg = payload
+  },
+  SET_CLICKED_UPDATE_BTN (state, payload) {
+    state.my.clicked_update_btn = payload
   },
   // 게시할 물품정보를 받아오는 함수.
   SET_POSTED_PD (state, payload) {
@@ -113,8 +143,17 @@ const mutations = {
 }
 
 const actions = {
+  initMyPageData ({commit}) {
+    commit('INIT_MYPAGE_DATA')
+  },
   setMyInfo ({commit}, payload) {
     commit('SET_MY_INFO', payload)
+  },
+  setMyInfoMyPictureFile ({commit}, payload) {
+    commit('SET_MY_INFO_PICTURE_FILE', payload)
+  },
+  setMyInfoMyPictureData ({commit}, payload) {
+    commit('SET_MY_INFO_PICTURE_DATA', payload)
   },
   setMyInfoPassword ({commit}, payload) {
     console.log(payload)
@@ -132,6 +171,9 @@ const actions = {
   },
   setMyInfoLocationDetailAddr ({commit}, payload) {
     commit('SET_MY_INFO_LOCATION_DETAIL_ADDR', payload)
+  },
+  setClickedUpdateBtn ({commit}, payload) {
+    commit('SET_CLICKED_UPDATE_BTN', payload)
   },
   setPostedPd ({commit}, payload) {
     commit('SET_POSTED_PD', payload)

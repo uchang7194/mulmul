@@ -17,6 +17,10 @@ const getters = {
 }
 
 const mutations = {
+  initLoginData (state) {
+    state.email = ''
+    state.password = ''
+  },
   // 로그인 창 활성화 유무
   changeIsLoginActived (state) {
     state.isLoginActived = !state.isLoginActived
@@ -38,6 +42,9 @@ const mutations = {
 }
 
 const actions = {
+  initLoginData ({commit}) {
+    commit('initLoginData')
+  },
   isChangedLoginActive ({commit}) {
     commit('changeIsLoginActived')
   },

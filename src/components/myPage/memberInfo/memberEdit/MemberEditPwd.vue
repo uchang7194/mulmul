@@ -61,6 +61,10 @@ export default {
     isValue () {
       return !!this.password.value
     }
+  },
+  mounted: function () {
+    let vuexPwd = this.info.password.value
+    this.$el.querySelector('#edit-password').value = vuexPwd
   }
 }
 </script>

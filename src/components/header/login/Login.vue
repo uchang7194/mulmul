@@ -34,6 +34,7 @@ export default {
     ...mapActions({
       'setLoginDataAll': 'setLoginDataAll',
       'btnClicked': 'isChangedLoginActive',
+      'initLoginData': 'initLoginData',
       'close': 'isChangedLoginFocus',
       'setToken': 'setToken'
     }),
@@ -43,26 +44,54 @@ export default {
     },
     requestToken () {
       this.loading = true
-      window.setTimeout(() => {
-        this.btnClicked()
+      let data = {
+        email: this.getEmail,
+        password: this.getPwd
+      }
+      this.$http({
+        method: 'post',
+        url: 'http://mulmul.xyz/member/login/',
+        data: data,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then((response) => {
+        console.log(response)
+        if (response.status === 200) {
+          let token = response.data.token
+
+          this.setToken(token)
+          this.setLoginDataAll({email: '', password: ''})
+
+          this.loading = false
+          this.btnClicked()
+        }
+      }).catch((error) => {
+        console.log(error)
         this.loading = false
-        this.setLoginDataAll({
-          email: '',
-          password: ''
-        })
-        this.setToken('adasd1!@!ada3!@')
-        // 서버에서 email과 pwd를 넘겼을 때 성공했다면
-        // response 객체에서 token값을 찾아 localstorage에 저장.
-      }, 3000)
+      })
+      // window.setTimeout(() => {
+      //   this.btnClicked()
+      //   this.loading = false
+      //   this.setLoginDataAll({
+      //     email: '',
+      //     password: ''
+      //   })
+      //   this.setToken('adasd1!@!ada3!@')
+      //   // 서버에서 email과 pwd를 넘겼을 때 성공했다면
+      //   // response 객체에서 token값을 찾아 localstorage에 저장.
+      // }, 3000)
     }
   },
   computed: {
     ...mapGetters({
-      'isClosed': 'getLoginActived'
+      'isClosed': 'getLoginActived',
+      'getEmail': 'getLoginEmail',
+      'getPwd': 'getLoginPassword'
     })
   },
-  mounted: function () {
-    console.log('login mounted this.$el', this.$el)
+  beforeDestroy: function () {
+    this.initLoginData()
   }
 }
 </script>

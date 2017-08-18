@@ -10,14 +10,13 @@
         @dragover="isDragged=true"
         @dragenter="isDragged=true"
         @dragleave="isDragged=false"
-        @drop="dropTest($event)"
       >
     </div>
   </div>
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   data () {
@@ -31,7 +30,9 @@ export default {
   },
   methods: {
     ...mapActions({
-      'isFocused': 'changeMyPageFocus'
+      'isFocused': 'changeMyPageFocus',
+      'setVuexMyPictureFile': 'setMyInfoMyPictureFile',
+      'setVuexMyPictureData': 'setMyInfoMyPictureData'
     }),
     changeFocus (event) {
       let target = event.target
@@ -39,13 +40,13 @@ export default {
     },
     setProfile (file) {
       let reader = new FileReader()
-      let vm = this
-      reader.onload = function (e) {
-        let dropZoneObj = vm.$el.querySelector('.drop-zone')
+      reader.onload = (e) => {
+        let dropZoneObj = this.$el.querySelector('.drop-zone')
         dropZoneObj.style.background = 'url(' + e.target.result + ')'
         dropZoneObj.style.backgroundSize = 'cover'
         dropZoneObj.style.backgroundPosition = 'center'
-        vm.isDragged = false
+        this.isDragged = false
+        this.setVuexMyPictureData(e.target.result)
       }
       reader.readAsDataURL(file)
     },
@@ -57,11 +58,18 @@ export default {
         this.isDragged = false
         return
       }
-
       this.setProfile(file)
-    },
-    dropTest (e) {
+      this.setVuexMyPictureFile(file)
     }
+  },
+  computed: {
+    ...mapGetters({
+      'getInfo': 'getMyInfo'
+    })
+  },
+  mounted: function () {
+    let vuexMyPicture = this.getInfo.my_picture.file
+    !!vuexMyPicture && this.setProfile(vuexMyPicture)
   }
 }
 </script>

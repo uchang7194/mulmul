@@ -98,6 +98,27 @@ const mutations = {
   setMemberValidationFocus (state, payload) {
     toggleLoginInputFocus(state.member_input_focus, payload)
   },
+  initMembershipData (state) {
+    let info = state.member_info
+    let focus = state.member_input_focus
+
+    state.isMembershipActive = false
+
+    info.email.value = ''
+    info.email.validation = false
+    info.password.value = ''
+    info.password.validation = false
+    info.password_confirm.value = ''
+    info.password_confirm.validation = false
+    info.name = ''
+    info.nickname = ''
+
+    focus.email = false
+    focus.password = false
+    focus.password_confirm = false
+    focus.name = false
+    focus.nickname = false
+  },
   setMembershipAllData (state, payload) {
     state.member_info = payload.member_info
     toggleLoginInputFocus(state.member_input_focus, payload.focus)
@@ -128,6 +149,9 @@ const mutations = {
   }
 }
 const actions = {
+  initMembershipData ({commit}) {
+    commit('initMembershipData')
+  },
   isChangedMembershipActive ({commit}) {
     commit('changeisMembershipActive')
   },
