@@ -129,6 +129,8 @@
 import HeaderComp from './components/header/Header.vue'
 import ModalComp from './components/Modal.vue'
 import MyPage from './components/mypage/MyPage.vue'
+import {mapActions} from 'vuex'
+
 export default {
   name: 'app',
   components: {
@@ -136,6 +138,20 @@ export default {
   },
   data () {
     return {}
+  },
+  methods: {
+    ...mapActions({
+      'hasToken': 'hasToken'
+    })
+  },
+  mounted: function () {
+    let token = !!window.localStorage.getItem('token')
+
+    if (token) {
+      this.hasToken(true)
+    } else {
+      this.hasToken(false)
+    }
   }
 }
 </script>

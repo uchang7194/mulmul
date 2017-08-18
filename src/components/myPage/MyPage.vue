@@ -41,13 +41,6 @@ export default {
   margin-bottom: $leading * 2;
   .user-profile{
     width: $leading * 9;
-    line-height: $leading-scale * 9;
-    display: block;
-    border: 1px solid #ddd;
-    border-radius: 50%;
-    background: pink;
-    margin: 0 auto;
-    margin-top: $leading /2;
   }
   .user-info-box{
     padding-top: $leading;

@@ -43,7 +43,8 @@ export default {
       'close': 'isChangedMembershipFocus',
       'setMemberFocus': 'setMemberValidationFocus',
       'changeMembershipActive': 'isChangedMembershipActive',
-      'setInfoDataAll': 'setMembershipAllData'
+      'setInfoDataAll': 'setMembershipAllData',
+      'initMembershipData': 'initMembershipData'
     }),
     changeFocus (e) {
       if (e.nodeType === 1) {
@@ -112,25 +113,7 @@ export default {
     },
     initMemberInfoData (vm) {
       vm = vm || this
-      vm.setInfoDataAll({
-        member_info: {
-          email: {
-            value: '',
-            validation: false
-          },
-          password_confirm: {
-            value: '',
-            is_ok: false
-          },
-          password: {
-            value: '',
-            validation: false
-          },
-          name: '',
-          nickname: ''
-        },
-        focus: ''
-      })
+      vm.initMembershipData()
     },
     requestMemberData () {
       this.loading = true
@@ -148,14 +131,14 @@ export default {
       let vm = this
       this.$http({
         method: 'post',
-        url: 'http://mulmul.xyz/member/',
+        url: 'http://mulmul.xyz/member/register',
         data: data,
         headers: {
           'Content-Type': 'application/json'
         }
       }).then((response) => {
         console.log(response)
-        if (response === 200) {
+        if (response.status === 200) {
           vm.loading = false
           vm.changeMembershipActive()
           vm.initMemberInfoData(vm)

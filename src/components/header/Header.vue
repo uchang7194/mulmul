@@ -18,14 +18,14 @@
       </div>
     </div>
     <div class="sign-in-up col col-d-3 col-t-2 col-m-4">
-      <div v-if="isToken" class="box t-right">
+      <div v-if="isVuexAuthToken" class="box t-right">
         <button type="button" class="btn-sign-in" @click="loginActived">로그인</button>
         <button type="button" class="btn-sign-up blue" @click="membershipActived">회원가입</button>
         <!--임시-->
       </div>
       <div v-else class="box t-right">
         <ul class="login-utill-list">
-          <router-link tag="li" to="/my-page"><a href>즐겨찾기</a></router-link>
+          <router-link tag="li" to="/"><a href>즐겨찾기</a></router-link>
           <router-link tag="li" to="/"><a href>알림</a></router-link>
           <router-link tag="li" to="/my-page"><a href>마이페이지</a></router-link>
           <router-link tag="li" to="/"><a href><span @click="removeToken">logout</span></a></router-link>
@@ -57,15 +57,16 @@ export default {
     }),
     removeToken () {
       console.log('removeToken')
+      window.localStorage.removeItem('token')
       this.setToken()
     }
   },
   computed: {
     ...mapGetters({
-      'hasToken': 'getToken'
+      'isToken': 'getToken'
     }),
-    isToken () {
-      return this.hasToken === '' ? true : false
+    isVuexAuthToken () {
+      return !this.isToken ? true : false
     }
   }
 }

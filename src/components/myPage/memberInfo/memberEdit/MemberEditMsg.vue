@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   data () {
@@ -31,9 +31,16 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      'info': 'getMyInfo'
+    }),
     setMsgValue () {
       return this.msg.value
     }
+  },
+  mounted: function () {
+    let vuexMsg = this.info.msg
+    this.$el.querySelector('#edit-msg').value = vuexMsg
   }
 }
 </script>

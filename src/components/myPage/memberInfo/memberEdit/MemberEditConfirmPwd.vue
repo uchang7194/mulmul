@@ -64,6 +64,10 @@ export default {
     isValue () {
       return !!this.pwd_confirm.value
     }
+  },
+  mounted: function () {
+    let vuexPwd = this.info.confirm_password
+    this.$el.querySelector('#edit-confirm-password').value = vuexPwd
   }
 }
 </script>

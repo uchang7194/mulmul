@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   data () {
@@ -91,9 +91,19 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      'info': 'getMyInfo'
+    }),
     locDetailAddr () {
       return this.address.detail_addr
     }
+  },
+  mounted: function () {
+    let vuexAddr = this.info.location
+    let vm = this.$el
+    vm.querySelector('#postcode').value = vuexAddr.postcode
+    vm.querySelector('#address').value = vuexAddr.addr
+    vm.querySelector('#detail-address').value = vuexAddr.detail_addr
   }
 }
 </script>
